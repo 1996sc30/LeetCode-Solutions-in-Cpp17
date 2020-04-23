@@ -11,7 +11,10 @@ public:
         {
             for (int j = 0; j < size(p); ++j)
             {
-                if (s[i] == p[j] || p[j] == '.') dp[i+1][j+1] = dp[i][j];
+                if (s[i] == p[j] || p[j] == '.')
+                {
+                    dp[i+1][j+1] = dp[i][j];
+                }
                 else if (p[j] == '*')
                 {
                     if (s[i] != p[j-1] && p[j-1] != '.')
