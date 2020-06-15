@@ -4,23 +4,20 @@ public:
         unordered_map<char, int> m;
         for (auto& x : t) ++m[x];
 
-        int sz = size(s);
         int minLen = INT_MAX;
         int start = 0;
 
         int l = 0;
-        int r = 0;
         int cnt = 0;
 
-        while (r < sz)
+        for (int r = 0; r < size(s); ++r)
         {
             if (--m[s[r]] >= 0) ++cnt;
-            ++r;
             while (cnt == size(t))
             {
-                if (r - l < minLen)
+                if (r - l + 1 < minLen)
                 {
-                    minLen = r - l;
+                    minLen = r - l + 1;
                     start = l;
                 }
                 if (++m[s[l]] > 0) --cnt;
