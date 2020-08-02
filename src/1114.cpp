@@ -14,7 +14,7 @@ public:
 
     void second(function<void()> printSecond) {
         unique_lock<mutex> l(m);
-        if (!b1) cv1.wait(l);
+        cv1.wait(l, [this] { return b1; });
         // printSecond() outputs "second". Do not change or remove this line.
         printSecond();
         b2 = true;
@@ -23,10 +23,11 @@ public:
 
     void third(function<void()> printThird) {
         unique_lock<mutex> l(m);
-        if (!b2) cv2.wait(l);
+        cv2.wait(l, [this] { return b2; });
         // printThird() outputs "third". Do not change or remove this line.
         printThird();
     }
+
 private:
     mutex m;
     condition_variable cv1;

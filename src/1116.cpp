@@ -5,6 +5,7 @@ private:
     mutex m;
     condition_variable cv;
     bool b = true;
+
 public:
     ZeroEvenOdd(int n) {
         this->n = n;

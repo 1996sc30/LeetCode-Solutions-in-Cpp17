@@ -6,6 +6,7 @@ private:
     condition_variable cv2;
     bool b1 = true;
     bool b2 = false;
+
 public:
     FooBar(int n) {
         this->n = n;
@@ -15,7 +16,7 @@ public:
         
         for (int i = 0; i < n; i++) {
             unique_lock<mutex> l(m);
-            if (!b1) cv1.wait(l);
+            cv1.wait(l, [this] { return b1; });
             // printFoo() outputs "foo". Do not change or remove this line.
             printFoo();
             b1 = false;
@@ -28,7 +29,7 @@ public:
         
         for (int i = 0; i < n; i++) {
             unique_lock<mutex> l(m);
-            if (!b2) cv2.wait(l);
+            cv2.wait(l, [this] { return b2; });
             // printBar() outputs "bar". Do not change or remove this line.
             printBar();
             b1 = true;

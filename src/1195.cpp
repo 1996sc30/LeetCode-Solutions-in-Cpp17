@@ -4,6 +4,7 @@ private:
     int cur = 1;
     mutex m;
     condition_variable cv;
+
 public:
     FizzBuzz(int n) {
         this->n = n;

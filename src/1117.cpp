@@ -21,6 +21,7 @@ public:
         releaseOxygen();
         cv.notify_one();
     }
+
 private:
     int n = 0;
     mutex m1;

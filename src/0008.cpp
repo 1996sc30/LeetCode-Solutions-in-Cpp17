@@ -22,7 +22,10 @@ public:
         while (isdigit(str[n]))
         {
             res = res * 10 + (str[n] - '0');
-            if (res > INT_MAX) return (flag > 0) ? INT_MAX : INT_MIN;
+            if (res > INT_MAX)
+            {
+                return (flag > 0) ? INT_MAX : INT_MIN;
+            }
             ++n;
         }
         return res * flag;
